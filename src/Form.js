@@ -1,23 +1,24 @@
 import React from 'react';
 import './Form.scss'
+import superagent from 'superagent'
 
 class Form extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      url: '',
-      metod: ''
-    };
-  }
 
-  handleBtnClick = event => {
-    console.log(this.props.data)
+
+  handleBtnClick =async event => {
     event.preventDefault();
     const url = event.target.url.value;
-    const method = event.target.method.value;
-    console.log(event.target.method);
-    this.setState({ url: url, method: method });
+    // const method = event.target.method.value;
+    // console.log(event.target.method);
+    // this.setState({ url: url, method: method });
+    let raw = await superagent.get(url);
+    // console.log("raw >>>>>>>>>>>>>>>>>>>>: ", raw)
+    // console.log("headers >>>>>>>>>>>>>>> : ", raw.headers);
+    const headers = raw.headers;
+    // const result = data.results;
+    // console.log(count,result)
+    this.props.handler(raw,headers)
   }
 
 
@@ -42,9 +43,7 @@ class Form extends React.Component {
             <button name="method"  value="put" >Put</button>
             <button name="method"  value="delete" >Delete</button> */}
         </form>
-        <div id="output">
-          <h3> {this.state.method}         {this.state.url}</h3>
-        </div>
+     
       </div>
     )
   }
