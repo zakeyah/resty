@@ -7,18 +7,29 @@ class Form extends React.Component {
 
 
   handleBtnClick =async event => {
-    event.preventDefault();
-    const url = event.target.url.value;
-    // const method = event.target.method.value;
-    // console.log(event.target.method);
-    // this.setState({ url: url, method: method });
-    let raw = await superagent.get(url);
-    // console.log("raw >>>>>>>>>>>>>>>>>>>>: ", raw)
-    // console.log("headers >>>>>>>>>>>>>>> : ", raw.headers);
-    const headers = raw.headers;
-    // const result = data.results;
-    // console.log(count,result)
-    this.props.handler(raw,headers)
+    try{
+      event.preventDefault();
+        let method ;
+        console.log(';;;;;;;;;;;;;;;;;;',this.props.data.ChosenQuery)
+      if (this.props.data.ChosenQuery.url!==""){
+        method = this.props.data.ChosenQuery.method;
+        console.log(this.props.data.ChosenQuery.method,'.......................')
+      }else{
+
+        method = event.target.method.value;
+      }
+      console.log(method,'method /////////////////')
+      let  url = event.target.url.value;
+      let body = event.target.body.value;
+      let raw = await superagent[`${method}`](url).send({record:body})
+      this.props.save({method,url})
+      const headers = raw.headers;
+      this.props.handler(raw,headers)
+      console.log(method,'................method')
+      this.props.reset();
+    }catch (error) {
+      console.log(error.message);
+  }
   }
 
 
@@ -27,21 +38,18 @@ class Form extends React.Component {
       <div>
         <form onSubmit={this.handleBtnClick}>
 
-          <input name="url" />
+          <input name="url" defaultValue={this.props.data.ChosenQuery.url} />
           <button tybe="submit" >Go</button>
           <br />
-          <input type='radio' name='method' value='GET' />
+          <input type='radio' name='method' value='get' />
           <label>GET</label>
-          <input type='radio' name='method' value='POST' />
+          <input type='radio' name='method' value='post' />
           <label>POST</label>
-          <input type='radio' name='method' value='Put' />
+          <input type='radio' name='method' value='put' />
           <label>Put</label>
-          <input type='radio' name='method' value='Delete' />
+          <input type='radio' name='method' value='delete' />
           <label>Delete</label>
-          {/* <button name="method" id="Get" value="Get" type="button">Get</button>
-            <button name="method" id="POST" value="POST"  >Post</button> 
-            <button name="method"  value="put" >Put</button>
-            <button name="method"  value="delete" >Delete</button> */}
+          <input name="body" />
         </form>
      
       </div>
