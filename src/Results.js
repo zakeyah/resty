@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactJson from 'react-json-view'
 import {If,Else} from './If'
+import './Results.scss'
 
 
 
