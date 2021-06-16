@@ -1,30 +1,35 @@
 import React from 'react';
 import ReactJson from 'react-json-view'
+import {If,Else} from './If'
+import './Results.scss'
 
 
-// const Results = ({data}) => {
 
-//     console.log(data)
-//     return (
-//      <div id="output">
-
-//           {/* <h3> {this.props.data.state.results}         </h3> */}
-//           {/* <h5>{this.state.res}</h5> */}
-//         </div> 
-//     )
-//   }
 
   class Results extends React.Component {
       render(){
-        console.log(this.props.data)
-
         return (
-         <div id="output">
+
+          <>
+          <Else condition={this.props.data.flag} condition2={this.props.data.headers}>
+          <div id="output">
+
+       
                   <ReactJson src={this.props.data.headers} name="headers" />
                   <ReactJson src={this.props.data.results} name="response" />
-              {/* <h3> {this.props.data.headers}         </h3> */}
-              {/* <h5>{this.state.res}</h5> */}
-            </div> 
+        
+           </div>
+       
+          </Else>
+          <If condition={this.props.data.flag} >
+          <div id="output">
+          
+          <div className="loader">
+            <p>loading!!!!!!!</p>
+            </div>
+           </div>
+            </If>
+          </>
         )
 
     }
