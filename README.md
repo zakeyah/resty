@@ -2,6 +2,7 @@
 [herokuapp](https://zakeyah-resty.herokuapp.com/)
 [codesandbox](https://codesandbox.io/s/falling-butterfly-gi9xl)
 [GitHub pages](https://zakeyah.github.io/resty/)
+[netlify](https://xenodochial-lalande-5dbcfb.netlify.app/)
 
  ## lab 26
 ![](images/lab26.jpg)

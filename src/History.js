@@ -15,20 +15,15 @@ import React from 'react';
 
         return (
          <div id="history-output">
-              {/* <Then> */}
                 {
                     this.props.data.map((query,index)=>{
                         return(
                             <div key={index}  onClick={this.handelClick}>
-                                <p>{query.method} {query.url}
-                                </p>
+                                <p>{query.method} {query.url}</p>
                              </div>
                         )
                     })
                 }
-            {/* </Then> */}
-                  {/* <ReactJson src={this.props.data.headers} name="headers" />
-                  <ReactJson src={this.props.data.results} name="response" /> */}
             </div> 
         )
 
