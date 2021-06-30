@@ -25,7 +25,6 @@ import './Results.scss'
           <div id="output">
           
           <div className="loader">
-            <p>loading!!!!!!!</p>
             </div>
            </div>
             </If>

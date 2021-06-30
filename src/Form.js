@@ -24,7 +24,7 @@ class Form extends React.Component {
       let  url = event.target.url.value;
       let body = event.target.body.value;
       let raw = await superagent[`${method}`](url).send({record:body})
-      // console.log('it paaaaaas')
+      console.log('it paaaaaas')
       this.props.save({method,url})
       const headers = raw.headers;
       this.props.handler(raw,headers)
@@ -33,8 +33,8 @@ class Form extends React.Component {
       this.props.handelToggle();
 
     }catch (error) {
-      this.props.handelToggle();
       console.log(error.message);
+      this.props.handelToggle();
   }
   }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import './History.scss'
+import {Link} from 'react-router-dom';
 
 
 
@@ -10,6 +11,7 @@ import './History.scss'
         e.preventDefault();
         let [method,url]=(e.target.innerText).split(" ");
       this.props.chosen({method,url})
+      console.log(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;',e.target.method)
     }
       render(){
 
@@ -18,8 +20,8 @@ import './History.scss'
                 {
                     this.props.data.map((query,index)=>{
                         return(
-                            <div key={index}  onClick={this.handelClick}>
-                                <p>{query.method} {query.url}</p>
+                            <div key={index} className={index} onClick={this.handelClick} >
+                            <Link to="/">{query.method} {query.url} </Link>
                              </div>
                         )
                     })
